@@ -59,9 +59,23 @@ function registerSW() {
 }
 
 // ---------------------------------------------------------------------------
+// Toggle Filters (mobile)
+// ---------------------------------------------------------------------------
+function toggleFilters() {
+  const panel = document.getElementById('filtersPanel');
+  const arrow = document.getElementById('filtersArrow');
+  panel.classList.toggle('open');
+  arrow.classList.toggle('rotated');
+}
+
+// ---------------------------------------------------------------------------
 // Tab Navigation
 // ---------------------------------------------------------------------------
 function switchTab(tab) {
+  // Update bottom nav active state
+  document.querySelectorAll('.bottom-nav-item').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-tab') === tab);
+  });
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
@@ -168,11 +182,15 @@ async function loadPrayerTimes(lat, lng) {
 function startCountdown() {
   if (countdownInterval) clearInterval(countdownInterval);
 
+  function localDateStr(d) {
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  }
+
   function update() {
     if (!prayerTimes) return;
 
     const now = new Date();
-    const today = now.toISOString().split('T')[0];
+    const today = localDateStr(now);
 
     const sehriTime = parseTime(prayerTimes.sehri, today);
     const maghribTime = parseTime(prayerTimes.maghrib, today);
@@ -186,18 +204,31 @@ function startCountdown() {
       target = maghribTime;
       label = 'Iftar In';
     } else {
+      // After iftar — count down to tomorrow's sehri
       const tomorrow = new Date(now);
       tomorrow.setDate(tomorrow.getDate() + 1);
-      const tomorrowStr = tomorrow.toISOString().split('T')[0];
-      target = parseTime(prayerTimes.sehri, tomorrowStr);
+      target = parseTime(prayerTimes.sehri, localDateStr(tomorrow));
       label = 'Next Sehri In';
     }
 
     document.getElementById('countdownLabel').textContent = label;
 
     const diff = target - now;
-    if (diff <= 0) {
-      document.getElementById('countdownTimer').textContent = '00:00:00';
+    if (isNaN(diff) || diff <= 0) {
+      // Fallback: recalculate next sehri robustly
+      const tmr = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+      const fallback = parseTime(prayerTimes.sehri, localDateStr(tmr));
+      const fbDiff = fallback - now;
+      if (!isNaN(fbDiff) && fbDiff > 0) {
+        document.getElementById('countdownLabel').textContent = 'Next Sehri In';
+        const hours = Math.floor(fbDiff / 3600000);
+        const mins = Math.floor((fbDiff % 3600000) / 60000);
+        const secs = Math.floor((fbDiff % 60000) / 1000);
+        document.getElementById('countdownTimer').textContent =
+          `${pad(hours)}:${pad(mins)}:${pad(secs)}`;
+      } else {
+        document.getElementById('countdownTimer').textContent = '00:00:00';
+      }
       return;
     }
 
@@ -214,9 +245,20 @@ function startCountdown() {
 }
 
 function parseTime(timeStr, dateStr) {
-  if (!timeStr) return new Date(0);
+  if (!timeStr) return new Date(NaN);
   const clean = timeStr.replace(/\s*\(.*\)/, '').trim();
-  return new Date(`${dateStr}T${clean}:00`);
+  const parts = clean.split(':');
+  if (parts.length < 2) return new Date(NaN);
+  const dateParts = dateStr.split('-');
+  // Build date using local constructor to avoid any UTC parsing issues
+  return new Date(
+    parseInt(dateParts[0]),
+    parseInt(dateParts[1]) - 1,
+    parseInt(dateParts[2]),
+    parseInt(parts[0]),
+    parseInt(parts[1]),
+    0
+  );
 }
 
 function pad(n) {
@@ -696,7 +738,19 @@ async function getAIRecommendation() {
     const data = await res.json();
 
     const resultDiv = document.getElementById('aiRecommendResult');
-    document.getElementById('recommendBody').innerHTML = escChat(data.recommendation);
+    let recHtml = escChat(data.recommendation);
+
+    // Make place names clickable — link to Google Maps
+    places.forEach(p => {
+      if (p.lat && p.lng && p.name) {
+        const escapedName = p.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const gmapUrl = `https://www.google.com/maps?q=${p.lat},${p.lng}`;
+        const regex = new RegExp(`(\\*\\*${escapedName}\\*\\*|${escapedName})`, 'gi');
+        recHtml = recHtml.replace(regex, `<a href="${gmapUrl}" target="_blank" rel="noopener" class="recommend-map-link" title="Open in Google Maps">$1 📍</a>`);
+      }
+    });
+
+    document.getElementById('recommendBody').innerHTML = recHtml;
     resultDiv.style.display = 'block';
     resultDiv.scrollIntoView({ behavior: 'smooth' });
   } catch (err) {

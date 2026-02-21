@@ -321,14 +321,17 @@ async def get_prayer_times(lat: float = Query(...), lng: float = Query(...)):
         except ValueError:
             sehri = fajr_str
 
+    def clean_time(t):
+        return t.split("(")[0].strip() if t else ""
+
     return {
         "sehri": sehri,
-        "fajr": timings.get("Fajr"),
-        "sunrise": timings.get("Sunrise"),
-        "dhuhr": timings.get("Dhuhr"),
-        "asr": timings.get("Asr"),
-        "maghrib": timings.get("Maghrib"),
-        "isha": timings.get("Isha"),
+        "fajr": clean_time(timings.get("Fajr", "")),
+        "sunrise": clean_time(timings.get("Sunrise", "")),
+        "dhuhr": clean_time(timings.get("Dhuhr", "")),
+        "asr": clean_time(timings.get("Asr", "")),
+        "maghrib": clean_time(timings.get("Maghrib", "")),
+        "isha": clean_time(timings.get("Isha", "")),
         "date": today.isoformat(),
     }
 
@@ -616,19 +619,19 @@ async def recommend_places(request: Request):
         rows = cur.fetchall()
 
     places_text = "\n".join([
-        f"- {r['name']} ({r['place_type']}) in {r.get('area','')}, {r['city']}, {r['country']}" +
+        f"- {r['name']} ({r['place_type']}) in {r.get('area','') + ', ' if r.get('area') else ''}{r['city']}, {r['country']}" +
         (f" | Menu: {r['iftar_menu']}" if r.get('iftar_menu') else "") +
         (f" | Biryani: Yes" if r.get('has_biryani') else "") +
-        (f" | Date: {r['iftar_date']}" if r.get('iftar_date') else "") +
-        (f" | Coords: {r['lat']},{r['lng']}" if r.get('lat') else "")
+        (f" | Date: {r['iftar_date']}" if r.get('iftar_date') else "")
         for r in rows
     ])
 
     messages = [
         {"role": "system", "content": f"""You are an AI that recommends the best iftar places.
-User is at: {user_location} (lat: {user_lat}, lng: {user_lng}).
+User is at: {user_location}.
 Here are the available places:\n{places_text}\n\nGive top 3-5 recommendations based on the user's preference.
-Consider distance, menu variety, and biryani availability.
+Consider location proximity, menu variety, and biryani availability.
+Always show area/city/country as the location — NEVER show latitude/longitude coordinates.
 Be concise, friendly, and helpful. Use emojis."""},
         {"role": "user", "content": preference}
     ]

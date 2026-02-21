@@ -1,37 +1,82 @@
 # 🌙 Iftar Tracker 2026
 
-**Worldwide Iftar & Biryani Tracker** — Find iftar information at mosques around the world, powered by AI.
+**Ramadan Companion App** — Find iftar places, read Quran, track prayer times, explore nearby mosques, and get AI-powered recommendations worldwide.
 
-> A fully dynamic, mobile-responsive web application with AI chatbot, Google Maps integration, location-based filtering, and real-time prayer time countdown.
+> A full-featured Progressive Web App with AI chatbot, interactive maps, Quran reader with audio, Ramadan calendar, multi-language support (6 languages), and real-time prayer time countdown.
 
 ---
 
 ## ✨ Features
 
+### 🏠 Home — Iftar Places
+
 | Feature                        | Description                                                                          |
 | ------------------------------ | ------------------------------------------------------------------------------------ |
 | 🤖 **AI Chatbot**              | Ask questions about mosques, iftar menus, biryani, prayer times — powered by Groq AI |
+| 🧠 **AI Recommendations**      | Get personalized iftar spot suggestions with clickable Google Maps links             |
 | 📍 **Auto Location Detection** | Automatically detects your country/city using browser geolocation                    |
-| 🗺️ **Google Maps Integration** | View any mosque location directly on Google Maps                                     |
-| 🔍 **Smart Search & Filters**  | Search by name, area, city, country. Filter by biryani availability, nearby mosques  |
+| 🗺️ **Google Maps Integration** | View any place location directly on Google Maps                                      |
+| 🔍 **Smart Search & Filters**  | Search by name, area, city, country. Filter by biryani, place type, date             |
 | ⏰ **Live Prayer Countdown**   | Real-time countdown to next Sehri/Iftar based on your location                       |
-| 🕌 **Add Mosques Dynamically** | Users can submit new mosques — no hardcoded data, everything is community-driven     |
-| 💬 **Comment System**          | Leave reviews and updates on mosque iftar quality                                    |
-| 📱 **Fully Mobile Responsive** | Premium dark Islamic theme, glassmorphism UI, works on all devices                   |
+| 🕌 **Add Places Dynamically**  | Users can submit new places with map pin — community-driven                          |
+| 💬 **Comment System**          | Leave reviews and updates on iftar quality                                           |
+| 🎙️ **Voice Input/Output**     | Speak to AI chatbot and hear responses read aloud                                    |
+
+### 📖 Quran Reader
+
+| Feature                        | Description                                                            |
+| ------------------------------ | ---------------------------------------------------------------------- |
+| 📚 **114 Surahs**              | Browse all surahs with Arabic text and English translation             |
+| 🔊 **Audio Recitation**        | Listen to Mishary Alafasy recitation for each surah                    |
+| 🔍 **Quran Search**            | Search for any word or phrase across the entire Quran                  |
+| 📑 **Juz Navigation**          | Browse Quran by juz (30 parts)                                        |
+| 🌐 **Multiple Editions**       | Switch between translation editions                                    |
+
+### 📅 Ramadan Calendar
+
+| Feature                        | Description                                                            |
+| ------------------------------ | ---------------------------------------------------------------------- |
+| 🗓️ **30-Day Timetable**       | Complete Ramadan schedule with Sehri & Iftar times                     |
+| 📍 **Location-Based**          | Prayer times calculated for your exact location (Karachi method)       |
+| 📊 **Month Selection**         | View calendar for any month of the year                                |
+
+### 🗺️ Nearby Map
+
+| Feature                        | Description                                                            |
+| ------------------------------ | ---------------------------------------------------------------------- |
+| 📍 **Interactive Leaflet Map** | See all iftar places on an interactive map                             |
+| 📏 **Radius Selection**        | Filter by distance: 1km, 5km, 10km, 25km, 50km                       |
+| 💡 **Rich Tooltips & Popups**  | Hover for quick info, click for full details (menu, location, type)    |
+| 🗂️ **Place Cards**            | Browse nearby places in card format below the map                      |
+
+### 🌍 Multi-Language & PWA
+
+| Feature                        | Description                                                            |
+| ------------------------------ | ---------------------------------------------------------------------- |
+| 🌐 **6 Languages**             | English, বাংলা, العربية, اردو, Bahasa Melayu, Türkçe                  |
+| ↔️ **RTL Support**             | Full right-to-left layout for Arabic and Urdu                          |
+| 📲 **PWA / Installable**       | Install on phone home screen, works offline                            |
+| 🔔 **Iftar Reminders**         | Browser notifications before Sehri & Iftar times                       |
+| 📱 **Mobile Bottom Nav**       | Facebook-style tab bar on mobile (Home, Quran, Calendar, Nearby)       |
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer            | Technology                                    |
-| ---------------- | --------------------------------------------- |
-| **Frontend**     | HTML5, Vanilla CSS, Vanilla JavaScript        |
-| **Backend**      | Python FastAPI (Vercel Serverless Functions)  |
-| **Database**     | PostgreSQL (Neon — free tier)                 |
-| **AI**           | Groq API (`llama-3.3-70b-versatile`)          |
-| **Prayer Times** | Aladhan API (free, no key needed)             |
-| **Geocoding**    | OpenStreetMap Nominatim (free, no key needed) |
-| **Hosting**      | Vercel (free tier — frontend + backend)       |
+| Layer             | Technology                                     |
+| ----------------- | ---------------------------------------------- |
+| **Frontend**      | HTML5, Vanilla CSS, Vanilla JavaScript         |
+| **Backend**       | Python 3.13 + FastAPI (Vercel Serverless)      |
+| **Database**      | PostgreSQL (Neon — free tier)                  |
+| **AI**            | Groq API (`llama-3.3-70b-versatile`)           |
+| **Quran API**     | alquran.cloud (surahs, translations, search)   |
+| **Quran Audio**   | quranicaudio.com (Mishary Alafasy)             |
+| **Prayer Times**  | Aladhan API (Karachi method, free)             |
+| **Maps**          | Leaflet.js + OpenStreetMap tiles               |
+| **Geocoding**     | OpenStreetMap Nominatim (free)                 |
+| **PWA**           | Service Worker + Web App Manifest              |
+| **i18n**          | JSON translation files (6 languages)           |
+| **Hosting**       | Vercel (free tier — frontend + backend)        |
 
 ---
 
@@ -42,13 +87,24 @@ iftar/
 ├── api/
 │   └── index.py            # FastAPI backend (all API routes)
 │
-├── index.html              # Main frontend page
-├── style.css               # Premium dark Islamic theme CSS
-├── app.js                  # Frontend logic (chatbot, maps, filters)
+├── i18n/                   # Translation files
+│   ├── en.json             # English
+│   ├── bn.json             # Bengali (বাংলা)
+│   ├── ar.json             # Arabic (العربية)
+│   ├── ur.json             # Urdu (اردو)
+│   ├── ms.json             # Malay (Bahasa Melayu)
+│   └── tr.json             # Turkish (Türkçe)
+│
+├── index.html              # Main frontend page (tabbed SPA)
+├── style.css               # Dark Islamic theme (Navy/Gold/Emerald)
+├── app.js                  # Frontend logic (~1600 lines)
+├── manifest.json           # PWA manifest
+├── sw.js                   # Service worker (cache v2)
 ├── favicon.svg             # Crescent moon favicon
 │
 ├── requirements.txt        # Python dependencies
 ├── vercel.json             # Vercel deployment config
+├── .env                    # Environment variables (not committed)
 └── README.md               # This file
 ```
 
@@ -56,16 +112,41 @@ iftar/
 
 ## 🔌 API Endpoints
 
+### Places & Comments
+
 | Method | Endpoint                       | Description                                                                      |
 | ------ | ------------------------------ | -------------------------------------------------------------------------------- |
-| `GET`  | `/api/mosques`                 | List mosques (with optional filters: `country`, `city`, `search`, `has_biryani`) |
-| `POST` | `/api/mosques`                 | Add a new mosque                                                                 |
-| `POST` | `/api/mosques/{id}/comments`   | Add a comment to a mosque                                                        |
-| `GET`  | `/api/prayer-times?lat=&lng=`  | Get prayer times for a location                                                  |
+| `GET`  | `/api/mosques`                 | List places (filters: `country`, `city`, `search`, `has_biryani`, `place_type`)  |
+| `POST` | `/api/mosques`                 | Add a new iftar place                                                            |
+| `POST` | `/api/mosques/{id}/comments`   | Add a comment to a place                                                         |
+
+### Location & Prayer
+
+| Method | Endpoint                       | Description                                                                      |
+| ------ | ------------------------------ | -------------------------------------------------------------------------------- |
+| `GET`  | `/api/prayer-times?lat=&lng=`  | Get prayer times (Karachi method, Sehri = Fajr − 3min)                           |
 | `GET`  | `/api/location-info?lat=&lng=` | Reverse geocode coordinates to country/city                                      |
-| `GET`  | `/api/countries`               | List all countries with mosque counts                                            |
+| `GET`  | `/api/countries`               | List all countries with place counts                                             |
 | `GET`  | `/api/cities?country=`         | List cities (optionally filtered by country)                                     |
+| `GET`  | `/api/ramadan-calendar`        | 30-day Ramadan timetable for a location                                          |
+
+### AI
+
+| Method | Endpoint                       | Description                                                                      |
+| ------ | ------------------------------ | -------------------------------------------------------------------------------- |
 | `POST` | `/api/chat`                    | AI chatbot — send a message, get a Groq-powered response                         |
+| `POST` | `/api/recommend`               | AI iftar spot recommendations based on location & preferences                    |
+
+### Quran (Proxy to alquran.cloud)
+
+| Method | Endpoint                              | Description                                      |
+| ------ | ------------------------------------- | ------------------------------------------------ |
+| `GET`  | `/api/quran/surahs`                   | List all 114 surahs                              |
+| `GET`  | `/api/quran/surah/{number}`           | Get a surah's ayahs                              |
+| `GET`  | `/api/quran/surah/{number}/editions`  | Get a surah with multiple editions (e.g. Arabic + English) |
+| `GET`  | `/api/quran/search`                   | Search Quran text                                |
+| `GET`  | `/api/quran/juz/{number}`             | Get ayahs by juz number                          |
+| `GET`  | `/api/quran/page/{number}`            | Get ayahs by page number                         |
 
 ---
 
@@ -86,11 +167,9 @@ iftar/
 
 ### 2. Set Environment Variables
 
-Set these in **Vercel Dashboard → Settings → Environment Variables**:
+Create a `.env` file in the project root:
 
-> ⚠️ **Never commit real credentials to Git.** Use the Vercel dashboard or a `.env` file (added to `.gitignore`) for local development.
-
-#### Required Variables
+> ⚠️ **Never commit real credentials to Git.** Use the Vercel dashboard for production or a `.env` file (added to `.gitignore`) for local development.
 
 ```env
 # Neon PostgreSQL (pooled — recommended)
@@ -98,19 +177,6 @@ DATABASE_URL=postgresql://neondb_owner:your_password@ep-xxxxx-pooler.region.neon
 
 # Groq AI API Key
 GROQ_API_KEY=gsk_your_groq_api_key_here
-```
-
-#### Optional Neon Variables (if needed)
-
-```env
-# Unpooled connection (for migrations or long-running queries)
-DATABASE_URL_UNPOOLED=postgresql://neondb_owner:your_password@ep-xxxxx.region.neon.tech/neondb?sslmode=require
-
-# Individual connection parameters
-PGHOST=ep-xxxxx-pooler.region.neon.tech
-PGUSER=neondb_owner
-PGDATABASE=neondb
-PGPASSWORD=your_password
 ```
 
 ### 3. Install Dependencies
@@ -122,62 +188,62 @@ pip install -r requirements.txt
 ### 4. Run Locally
 
 ```bash
-# Set env vars locally
-# Create a .env file with DATABASE_URL and GROQ_API_KEY
-
-# Start the FastAPI server
-uvicorn api.index:app --reload --port 8000
-
-# Open http://localhost:8000 in your browser
+python -m uvicorn api.index:app --reload --port 8000
+# Open http://localhost:8000
 ```
 
 ### 5. Deploy to Vercel
 
 ```bash
-# Install Vercel CLI
 npm i -g vercel
-
-# Deploy
 vercel --prod
 ```
 
-Set environment variables in Vercel Dashboard → Settings → Environment Variables.
+Set environment variables in **Vercel Dashboard → Settings → Environment Variables**.
 
 ---
 
-## 📋 Development Tasks
+## 📋 Completed Features
 
 - [x] Project plan & README
-- [ ] Create `vercel.json` with routing config
-- [ ] Build backend API (`api/index.py`)
-  - [ ] Database models (Mosque, Comment) with Neon PostgreSQL
-  - [ ] CRUD endpoints for mosques
-  - [ ] Comment system
-  - [ ] AI chatbot endpoint (Groq API)
-  - [ ] Prayer times proxy
-  - [ ] Reverse geocoding
-  - [ ] Country/city listing
-- [ ] Build frontend
-  - [ ] Hero section with prayer countdown timer
-  - [ ] Location auto-detection & badge
-  - [ ] Search bar & filter controls
-  - [ ] Mosque cards grid (dynamic, no default data)
-  - [ ] Add mosque form with geolocation
-  - [ ] Comment submission on each card
-  - [ ] AI chatbot floating widget
-  - [ ] Google Maps links on cards
-  - [ ] Toast notifications
-  - [ ] Mobile responsive (320px → 1920px+)
-- [ ] CSS Design System
-  - [ ] Dark Islamic theme (navy + gold + emerald)
-  - [ ] Glassmorphism cards
-  - [ ] Smooth animations & micro-interactions
-  - [ ] Mobile-first responsive breakpoints
-- [ ] Testing & verification
-- [ ] Deploy to Vercel
+- [x] Vercel deployment config (`vercel.json`)
+- [x] FastAPI backend with all endpoints
+- [x] PostgreSQL (Neon) — mosques & comments tables
+- [x] CRUD for iftar places with map pin picker
+- [x] Comment system
+- [x] AI chatbot (Groq — llama-3.3-70b-versatile)
+- [x] AI iftar recommendations with Google Maps links
+- [x] Prayer times with live Sehri/Iftar countdown
+- [x] Location auto-detection & filtering
+- [x] Smart search, country/city/type/biryani filters
+- [x] Pagination (12 per page)
+- [x] Quran reader (114 surahs, Arabic + translation, audio, juz, search)
+- [x] Ramadan 30-day calendar
+- [x] Nearby interactive map (Leaflet) with radius filter
+- [x] PWA (manifest + service worker, installable)
+- [x] i18n — 6 languages (EN, BN, AR, UR, MS, TR) with RTL
+- [x] Iftar/Sehri reminder notifications
+- [x] Voice input/output for chatbot
+- [x] Mobile-first responsive design (320px → 1920px+)
+- [x] Mobile bottom navigation bar
+- [x] Collapsible filter panel on mobile
+- [x] Dark Islamic theme (Navy/Gold/Emerald, glassmorphism)
+- [x] Toast notifications & smooth animations
+
+---
+
+## 📸 Screenshots
+
+> Run the app locally or visit the deployed URL to see it in action.
 
 ---
 
 ## 📝 License
 
 MIT — Free to use and modify.
+
+---
+
+## 🙏 Courtesy
+
+Made with ❤️ by **[Mohatamim](https://www.facebook.com/mohatamim44)**

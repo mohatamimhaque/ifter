@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌙 Iftar Tracker 2026 — Worldwide Iftar & Biryani Finder | Any Place, Any Date</title>
+  <title>Iftar Tracker 2026 — Worldwide Iftar & Biryani Finder | Any Place, Any Date</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#0a1628" />
@@ -81,7 +81,15 @@
           <span class="material-symbols-rounded search-icon">search</span>
           <input type="text" id="searchInput" placeholder="Search places by name, area, city, type…" data-i18n-placeholder="search_placeholder" />
         </div>
-        <div class="filters">
+        <div class="filters-toggle-row">
+          <button class="btn btn-sm btn-secondary filters-toggle-btn" id="filtersToggleBtn" onclick="toggleFilters()">
+            <span class="material-symbols-rounded">tune</span> Filters
+            <span class="material-symbols-rounded filters-toggle-arrow" id="filtersArrow">expand_more</span>
+          </button>
+          <button class="btn btn-primary" id="addMosqueBtn"><span class="material-symbols-rounded">add</span> <span data-i18n="add_place">Add Place</span></button>
+          <button class="btn btn-secondary" id="aiRecommendBtn" onclick="getAIRecommendation()"><span class="material-symbols-rounded">auto_awesome</span> <span data-i18n="ai_suggest">AI Suggest</span></button>
+        </div>
+        <div class="filters filters-collapsible" id="filtersPanel">
           <select id="countryFilter"><option value="">All Countries</option></select>
           <select id="cityFilter"><option value="">All Cities</option></select>
           <select id="typeFilter">
@@ -102,8 +110,6 @@
             <span class="checkmark"></span>
             <span class="material-symbols-rounded" style="font-size:18px">restaurant</span> <span data-i18n="biryani_only">Biryani Only</span>
           </label>
-          <button class="btn btn-primary" id="addMosqueBtn"><span class="material-symbols-rounded">add</span> <span data-i18n="add_place">Add Place</span></button>
-          <button class="btn btn-secondary" id="aiRecommendBtn" onclick="getAIRecommendation()"><span class="material-symbols-rounded">auto_awesome</span> <span data-i18n="ai_suggest">AI Suggest</span></button>
         </div>
       </div>
     </section>
@@ -393,6 +399,26 @@
     </form>
   </div>
 
+  <!-- ==================== MOBILE BOTTOM NAV ==================== -->
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="bottom-nav-item active" data-tab="home" onclick="switchTab('home')">
+      <span class="material-symbols-rounded">home</span>
+      <span data-i18n="nav_home">Home</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="quran" onclick="switchTab('quran')">
+      <span class="material-symbols-rounded">menu_book</span>
+      <span data-i18n="nav_quran">Quran</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="calendar" onclick="switchTab('calendar')">
+      <span class="material-symbols-rounded">calendar_month</span>
+      <span data-i18n="nav_calendar">Calendar</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="nearby" onclick="switchTab('nearby')">
+      <span class="material-symbols-rounded">explore_nearby</span>
+      <span data-i18n="nav_nearby">Nearby</span>
+    </button>
+  </nav>
+
   <!-- ==================== TOAST ==================== -->
   <div class="toast-container" id="toastContainer"></div>
 
@@ -400,6 +426,7 @@
   <footer class="footer">
     <p><span class="material-symbols-rounded" style="font-size:18px;vertical-align:middle">dark_mode</span> Iftar Tracker 2026 — Community-driven iftar information worldwide</p>
     <p class="footer-sub">Built with ❤️ for Ramadan</p>
+    <p class="footer-sub">Made by <a href="https://www.facebook.com/mohatamim44" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">Mohatamim</a></p>
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

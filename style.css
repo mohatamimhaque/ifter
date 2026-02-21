@@ -310,11 +310,50 @@ body::before {
   color: var(--text-muted);
 }
 
+/* Filters toggle row (mobile) */
+.filters-toggle-row {
+  display: none;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.filters-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.filters-toggle-arrow {
+  transition: transform 0.3s ease;
+}
+
+.filters-toggle-arrow.rotated {
+  transform: rotate(180deg);
+}
+
 .filters {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .filters-toggle-row {
+    display: flex;
+  }
+  .filters-collapsible {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .filters-collapsible.open {
+    display: flex;
+  }
 }
 
 .filters select {
@@ -1252,6 +1291,92 @@ body::before {
   font-size: 20px;
 }
 
+/* ---------- MOBILE BOTTOM NAV ---------- */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  background: rgba(10, 22, 40, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  padding: 0;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  height: 60px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex: 1;
+  height: 100%;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  padding: 6px 0;
+}
+
+.bottom-nav-item .material-symbols-rounded {
+  font-size: 24px;
+  transition: var(--transition);
+}
+
+.bottom-nav-item.active {
+  color: var(--gold);
+}
+
+.bottom-nav-item.active .material-symbols-rounded {
+  font-size: 26px;
+}
+
+.bottom-nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 0 0 4px 4px;
+}
+
+.bottom-nav-item:active {
+  transform: scale(0.92);
+}
+
+@media (max-width: 768px) {
+  .bottom-nav {
+    display: flex;
+  }
+  body {
+    padding-bottom: 60px;
+  }
+  .chatbot-toggle {
+    bottom: 74px !important;
+  }
+  .chatbot-window {
+    bottom: 140px !important;
+  }
+  .footer {
+    padding-bottom: 70px;
+  }
+}
+
 /* ---------- TAB CONTENT ---------- */
 .tab-content {
   display: none;
@@ -2091,6 +2216,19 @@ body::before {
   white-space: pre-line;
 }
 
+.recommend-map-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 700;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.recommend-map-link:hover {
+  color: #ffe14d;
+  text-decoration: underline;
+}
+
 /* ---------- REMINDER SETTINGS ---------- */
 .reminder-settings {
   display: flex;
@@ -2303,11 +2441,6 @@ html[dir="rtl"] .nearby-count {
   .search-bar {
     margin-bottom: 10px;
   }
-  .filters {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-  }
   .filters select {
     min-width: unset;
     width: 100%;
@@ -2322,7 +2455,11 @@ html[dir="rtl"] .nearby-count {
     justify-content: flex-start;
   }
   #addMosqueBtn {
-    width: 100%;
+    flex: 1;
+    justify-content: center;
+  }
+  #aiRecommendBtn {
+    flex: 1;
     justify-content: center;
   }
 
