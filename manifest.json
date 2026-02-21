@@ -1,0 +1,21 @@
+{
+  "name": "Iftar Tracker 2026",
+  "short_name": "Iftar Tracker",
+  "description": "Worldwide Iftar & Biryani Finder — Mosques, Restaurants, Community Centers & More. Full Quran, Ramadan Calendar, AI Assistant.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a1628",
+  "theme_color": "#0a1628",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "utilities"],
+  "lang": "en",
+  "dir": "ltr"
+}

@@ -1,0 +1,2658 @@
+/* ==========================================================================
+   Iftar Tracker 2026 — Premium Dark Islamic Theme
+   Colors: Navy (#0a1628) · Gold (#FFD700) · Emerald (#10b981)
+   Glassmorphism + smooth animations + mobile-first responsive
+   ========================================================================== */
+
+/* ---------- Reset & Variables ---------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0a1628;
+  --bg-secondary: #0f1f3d;
+  --bg-card: rgba(15, 31, 61, 0.7);
+  --bg-glass: rgba(15, 31, 61, 0.45);
+  --gold: #FFD700;
+  --gold-dim: #b8960f;
+  --emerald: #10b981;
+  --emerald-dim: #059669;
+  --text-primary: #f0f4f8;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: rgba(255, 215, 0, 0.15);
+  --border-light: rgba(255, 255, 255, 0.08);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-gold: 0 0 20px rgba(255, 215, 0, 0.15);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Material Symbols config */
+.material-symbols-rounded {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-size: 22px;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- Glass Card ---------- */
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color: #0a1628;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-secondary {
+  background: var(--bg-glass);
+  color: var(--gold);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: #0a1628;
+  font-weight: 700;
+}
+.btn-gold:hover {
+  background: #ffe14d;
+}
+
+.btn-sm {
+  padding: 6px 14px;
+  font-size: 0.8rem;
+}
+
+.btn-full {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, #0a1628 0%, #0f2847 50%, #0a1628 100%);
+  padding: 60px 20px 40px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 215, 0, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(16, 185, 129, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--gold), #fff8dc, var(--gold));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.hero-title .material-symbols-rounded {
+  font-size: 2.8rem;
+  background: linear-gradient(135deg, var(--gold), #fff8dc, var(--gold));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+/* Location Badge */
+.location-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  color: var(--emerald);
+  margin-bottom: 28px;
+  animation: fadeInUp 0.6s ease;
+}
+
+.location-icon {
+  font-size: 1.2rem;
+  color: var(--emerald);
+}
+
+/* Countdown */
+.countdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.countdown-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 16px 24px;
+  min-width: 140px;
+  transition: var(--transition);
+}
+
+.countdown-card.active {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.countdown-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.countdown-time {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.countdown-live {
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+}
+
+/* ---------- CONTROLS ---------- */
+.controls-section {
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 22, 40, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  margin-bottom: 16px;
+  transition: var(--transition);
+}
+
+.search-bar:focus-within {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.search-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.search-bar input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: var(--font);
+}
+
+.search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filters select {
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-family: var(--font);
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 150px;
+}
+
+.filters select:focus {
+  border-color: var(--gold);
+}
+
+.filters select option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Checkbox filter */
+.checkbox-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.checkbox-filter input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+/* ---------- MOSQUES SECTION ---------- */
+.mosques-section {
+  padding: 32px 0 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mosque-count {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  background: var(--bg-glass);
+  padding: 6px 16px;
+  border-radius: 50px;
+  border: 1px solid var(--border-light);
+}
+
+.mosque-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+/* ---------- PAGINATION ---------- */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.page-btn:hover:not(:disabled):not(.active) {
+  border-color: var(--emerald);
+  color: var(--emerald);
+  background: rgba(78, 205, 196, 0.08);
+}
+
+.page-btn.active {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color: #0a1628;
+  border-color: var(--gold);
+  box-shadow: 0 2px 12px rgba(212, 175, 55, 0.3);
+}
+
+.page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.page-dots {
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding: 0 4px;
+  user-select: none;
+}
+
+/* ---------- MOSQUE CARD ---------- */
+.mosque-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: var(--transition);
+  animation: fadeInUp 0.5s ease;
+}
+
+.mosque-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.mosque-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-type-icon {
+  color: var(--emerald);
+  flex-shrink: 0;
+}
+
+.mosque-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.card-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.type-badge {
+  background: rgba(78, 205, 196, 0.15);
+  color: var(--emerald);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+  border: 1px solid rgba(78, 205, 196, 0.3);
+  white-space: nowrap;
+}
+
+.biryani-badge {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color: #0a1628;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 50px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.filter-date-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 0 12px;
+}
+
+.filter-date-group input[type="date"] {
+  background: transparent;
+  color: var(--text-primary);
+  border: none;
+  font-size: 0.9rem;
+  font-family: inherit;
+  padding: 10px 0;
+  outline: none;
+}
+
+.filter-date-group input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.mosque-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--emerald);
+  margin-bottom: 12px;
+}
+
+.mosque-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.mosque-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.mosque-meta-icon {
+  flex-shrink: 0;
+  font-size: 16px;
+  color: var(--gold-dim);
+}
+
+.mosque-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.mosque-actions .btn {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Comments */
+.comments-section {
+  border-top: 1px solid var(--border-light);
+  padding-top: 12px;
+}
+
+.comments-title {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.comment-item {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  font-size: 0.83rem;
+}
+
+.comment-author {
+  font-weight: 600;
+  color: var(--gold);
+  margin-right: 6px;
+}
+
+.comment-text {
+  color: var(--text-secondary);
+}
+
+.comment-date {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.comment-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.comment-form input {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-family: var(--font);
+  outline: none;
+  transition: var(--transition);
+}
+
+.comment-form input:focus {
+  border-color: var(--gold);
+}
+
+/* Empty State */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+}
+
+.empty-state h3 {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+/* ---------- MODAL ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  animation: slideUp 0.3s ease;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.modal-header h2 {
+  font-size: 1.3rem;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: var(--transition);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.modal-close:hover {
+  color: var(--text-primary);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-family: var(--font);
+  outline: none;
+  transition: var(--transition);
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.08);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-checkbox {
+  padding-top: 4px;
+}
+
+/* Map Picker */
+.map-picker-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+.map-picker-wrapper:hover {
+  border-color: var(--gold);
+}
+
+#mapPicker {
+  width: 100%;
+  height: 220px;
+  background: var(--bg-secondary);
+  cursor: crosshair;
+}
+
+#mapPicker .leaflet-control-attribution {
+  display: none;
+}
+
+.map-coords {
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.map-coords.has-pin {
+  color: var(--emerald);
+}
+
+/* ---------- CHATBOT ---------- */
+.chatbot-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 900;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+  transition: var(--transition);
+  animation: pulse 2s infinite;
+}
+
+.chatbot-toggle:hover {
+  transform: scale(1.1);
+}
+
+.chat-icon {
+  font-size: 1.8rem;
+  color: #0a1628;
+}
+
+.chatbot-window {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  width: 380px;
+  max-height: 520px;
+  display: none;
+  flex-direction: column;
+  z-index: 950;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+.chatbot-window.active {
+  display: flex;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
+  border-bottom: 1px solid var(--border-light);
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.chat-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 360px;
+}
+
+.chat-msg {
+  display: flex;
+  max-width: 85%;
+}
+
+.chat-msg.user {
+  align-self: flex-end;
+}
+
+.chat-msg.bot {
+  align-self: flex-start;
+}
+
+.chat-bubble {
+  padding: 10px 16px;
+  border-radius: 16px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.chat-msg.user .chat-bubble {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color: #0a1628;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-msg.bot .chat-bubble {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  border-bottom-left-radius: 4px;
+}
+
+.chat-input-area {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--border-light);
+}
+
+.chat-input-area input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 9px 12px;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-family: var(--font);
+  outline: none;
+}
+
+.chat-input-area input:focus {
+  border-color: var(--gold);
+}
+
+.chat-input-area .btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  padding: 0;
+  flex-shrink: 0;
+  font-size: 0;
+}
+
+.chat-input-area .btn-gold .material-symbols-rounded {
+  font-size: 18px;
+}
+
+/* Voice buttons */
+.btn-voice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.btn-voice:hover {
+  border-color: var(--emerald);
+  color: var(--emerald);
+  background: rgba(78, 205, 196, 0.1);
+}
+
+.btn-voice.recording {
+  border-color: #ff4444;
+  color: #ff4444;
+  background: rgba(255, 68, 68, 0.15);
+  animation: pulse-mic 1s ease-in-out infinite;
+}
+
+.btn-voice.active-speaker {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.12);
+}
+
+.btn-voice .material-symbols-rounded {
+  font-size: 18px;
+}
+
+@keyframes pulse-mic {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(255, 68, 68, 0); }
+}
+
+/* Speaking indicator on bot bubbles */
+.chat-bubble.speaking {
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+}
+
+/* ---------- TOAST ---------- */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  box-shadow: var(--shadow);
+  animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+  max-width: 360px;
+}
+
+.toast.success {
+  border-left: 4px solid var(--emerald);
+}
+
+.toast.error {
+  border-left: 4px solid #ef4444;
+}
+
+.toast.info {
+  border-left: 4px solid var(--gold);
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+  text-align: center;
+  padding: 32px 20px;
+  border-top: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.footer-sub {
+  margin-top: 4px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateX(60px); }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3); }
+  50% { box-shadow: 0 4px 30px rgba(255, 215, 0, 0.5); }
+}
+
+/* ---------- SCROLLBAR ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dim);
+}
+
+/* ---------- TOP NAVIGATION ---------- */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  background: rgba(10, 22, 40, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  gap: 12px;
+}
+
+.nav-brand {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-brand .material-symbols-rounded {
+  font-size: 1.4rem;
+}
+
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-tab.active {
+  color: var(--gold);
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.nav-tab .material-symbols-rounded {
+  font-size: 18px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.lang-select {
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  font-family: var(--font);
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.lang-select:focus {
+  border-color: var(--gold);
+}
+
+.lang-select option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.btn-reminder {
+  padding: 6px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-reminder:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.btn-reminder .material-symbols-rounded {
+  font-size: 20px;
+}
+
+/* ---------- TAB CONTENT ---------- */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Hero offset for top nav */
+.hero {
+  padding-top: 100px !important;
+}
+
+/* Controls section offset */
+.controls-section {
+  top: 56px;
+}
+
+/* ---------- QURAN SECTION ---------- */
+.quran-section {
+  padding: 100px 0 60px;
+}
+
+.quran-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.quran-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--gold), #fff8dc, var(--gold));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.quran-header h2 .material-symbols-rounded {
+  font-size: 2rem;
+  background: linear-gradient(135deg, var(--gold), #fff8dc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.quran-subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.quran-controls {
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quran-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quran-search-bar .material-symbols-rounded {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.quran-search-bar input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: var(--font);
+}
+
+.quran-search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+.quran-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.quran-filters select {
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-family: var(--font);
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  min-width: 140px;
+}
+
+.quran-filters select:focus {
+  border-color: var(--gold);
+}
+
+.quran-filters select option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Quran Layout: Sidebar + Content */
+.quran-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+/* Sidebar */
+.quran-sidebar {
+  max-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: sticky;
+  top: 80px;
+}
+
+.sidebar-header {
+  padding: 14px 18px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gold);
+  border-bottom: 1px solid var(--border-light);
+  flex-shrink: 0;
+}
+
+.surah-list {
+  overflow-y: auto;
+  flex: 1;
+  padding: 6px;
+}
+
+.surah-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 2px;
+}
+
+.surah-item:hover {
+  background: rgba(255, 215, 0, 0.06);
+}
+
+.surah-item.active {
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.surah-number {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--bg-glass);
+  flex-shrink: 0;
+}
+
+.surah-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.surah-name-en {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.surah-name-ar {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  direction: rtl;
+}
+
+.surah-meta-right {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.surah-type-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.surah-type-badge.meccan {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--emerald);
+}
+
+.surah-type-badge.medinan {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.surah-ayah-count {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 2px;
+}
+
+/* Quran Content Area */
+.quran-content {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  padding: 28px;
+}
+
+.quran-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.quran-empty-state h3 {
+  color: var(--text-secondary);
+  margin-top: 16px;
+  font-size: 1.3rem;
+}
+
+.quran-empty-state p {
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.surah-content-header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.surah-content-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.surah-arabic-title {
+  font-size: 2rem;
+  color: var(--text-primary);
+  direction: rtl;
+  margin-top: 4px;
+  font-family: 'Traditional Arabic', 'Amiri', serif;
+}
+
+.surah-content-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+
+.surah-audio {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.surah-audio audio {
+  max-width: 300px;
+  height: 36px;
+  border-radius: 18px;
+}
+
+/* Bismillah */
+.bismillah {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--gold);
+  padding: 16px 0 24px;
+  direction: rtl;
+  font-family: 'Traditional Arabic', 'Amiri', serif;
+  opacity: 0.9;
+}
+
+/* Ayah blocks */
+.ayahs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ayah-block {
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.ayah-block:hover {
+  border-color: var(--border);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.ayah-number-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.ayah-text-arabic {
+  direction: rtl;
+  text-align: right;
+  font-size: 1.6rem;
+  line-height: 2.2;
+  color: var(--text-primary);
+  font-family: 'Traditional Arabic', 'Amiri', serif;
+  margin-bottom: 10px;
+}
+
+.ayah-text-translation {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-light);
+  padding-top: 10px;
+}
+
+/* Surah Navigation */
+.surah-nav-btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
+}
+
+/* Juz divider */
+.juz-surah-divider {
+  text-align: center;
+  padding: 16px 0;
+  margin: 20px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Quran Search Results */
+.quran-search-results {
+  margin-top: 24px;
+  padding: 20px;
+}
+
+.search-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.search-results-header h3 {
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+}
+
+.search-result-item {
+  padding: 14px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.15);
+  margin-bottom: 10px;
+  border: 1px solid var(--border-light);
+  transition: var(--transition);
+}
+
+.search-result-item:hover {
+  border-color: var(--gold);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.search-result-ref {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.search-result-arabic {
+  direction: rtl;
+  text-align: right;
+  font-size: 1.3rem;
+  line-height: 2;
+  color: var(--text-primary);
+  font-family: 'Traditional Arabic', 'Amiri', serif;
+  margin-bottom: 6px;
+}
+
+.search-result-text {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ---------- CALENDAR SECTION ---------- */
+.calendar-section {
+  padding: 100px 0 60px;
+}
+
+.calendar-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.calendar-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--gold), #fff8dc, var(--gold));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.calendar-header h2 .material-symbols-rounded {
+  font-size: 2rem;
+  background: linear-gradient(135deg, var(--gold), #fff8dc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.calendar-header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+}
+
+.calendar-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--emerald);
+  font-size: 0.9rem;
+}
+
+.calendar-location .material-symbols-rounded {
+  font-size: 1.2rem;
+}
+
+.calendar-month-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.calendar-month-select select {
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-family: var(--font);
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.calendar-month-select select option {
+  background: var(--bg-secondary);
+}
+
+.calendar-table-wrapper {
+  overflow-x: auto;
+  padding: 4px;
+}
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.calendar-table thead th {
+  background: rgba(255, 215, 0, 0.08);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.calendar-table tbody td {
+  padding: 10px 8px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.calendar-table tbody tr:hover {
+  background: rgba(255, 215, 0, 0.04);
+}
+
+.calendar-table tbody tr.calendar-today {
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.calendar-table tbody tr.calendar-today td {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.cal-sehri {
+  color: var(--emerald) !important;
+  font-weight: 600 !important;
+}
+
+.cal-iftar {
+  color: var(--gold) !important;
+  font-weight: 700 !important;
+}
+
+.cal-day-name {
+  font-weight: 600;
+  color: var(--text-primary) !important;
+}
+
+.cal-hijri-date {
+  font-size: 0.78rem;
+  color: var(--text-muted) !important;
+}
+
+/* ---------- NEARBY SECTION ---------- */
+.nearby-section {
+  padding: 100px 0 60px;
+}
+
+.nearby-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.nearby-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--gold), #fff8dc, var(--gold));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.nearby-header h2 .material-symbols-rounded {
+  font-size: 2rem;
+  background: linear-gradient(135deg, var(--gold), #fff8dc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nearby-header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.nearby-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+}
+
+.nearby-controls > label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.radius-btns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.radius-btn {
+  padding: 6px 14px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.radius-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.radius-btn.active {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.nearby-count {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--bg-glass);
+  padding: 4px 12px;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+.nearby-map-wrapper {
+  margin-bottom: 24px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.nearby-map-wrapper #nearbyMap {
+  border-radius: 12px;
+}
+
+.nearby-list {
+  margin-top: 16px;
+}
+
+.nearby-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.nearby-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  transition: var(--transition);
+  animation: fadeInUp 0.4s ease;
+}
+
+.nearby-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.nearby-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.nearby-card-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.nearby-distance {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--emerald);
+  background: rgba(16, 185, 129, 0.12);
+  padding: 3px 10px;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+.nearby-card-info {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.nearby-card-info .material-symbols-rounded {
+  font-size: 16px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.nearby-card-badge {
+  margin-top: 6px;
+}
+
+.nearby-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Leaflet Nearby Tooltip */
+.nearby-tooltip {
+  background: rgba(10, 22, 40, 0.92) !important;
+  color: #f0f4f8 !important;
+  border: 1px solid rgba(255, 215, 0, 0.3) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  font-size: 0.82rem !important;
+  font-family: system-ui, sans-serif !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
+}
+
+.nearby-tooltip::before {
+  border-top-color: rgba(10, 22, 40, 0.92) !important;
+}
+
+/* User location marker */
+.user-location-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-marker-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--gold);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* ---------- AI RECOMMEND RESULT ---------- */
+.ai-recommend-result {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.recommend-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.recommend-header .modal-close {
+  margin-left: auto;
+}
+
+.recommend-body {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+/* ---------- REMINDER SETTINGS ---------- */
+.reminder-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reminder-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.reminder-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reminder-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.reminder-option:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.reminder-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+.reminder-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255, 215, 0, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.reminder-status .material-symbols-rounded {
+  font-size: 18px;
+  color: var(--gold);
+}
+
+/* ---------- RTL SUPPORT ---------- */
+html[dir="rtl"] .nav-inner {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .nav-tabs {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .quran-layout {
+  direction: rtl;
+}
+
+html[dir="rtl"] .surah-item {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .surah-meta-right {
+  text-align: left;
+}
+
+html[dir="rtl"] .nearby-count {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* ---------- LOADING SPINNER ---------- */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.loading-spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 10px 16px;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background: var(--text-muted);
+  border-radius: 50%;
+  animation: typing 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-4px); }
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .hero {
+    padding: 90px 16px 24px !important;
+  }
+  .hero-title {
+    font-size: 1.8rem;
+    gap: 8px;
+  }
+  .hero-title .material-symbols-rounded {
+    font-size: 1.8rem;
+  }
+  .hero-subtitle {
+    font-size: 0.92rem;
+    margin-bottom: 16px;
+  }
+  .location-badge {
+    font-size: 0.82rem;
+    padding: 6px 14px;
+    margin-bottom: 18px;
+  }
+  .countdown-container {
+    gap: 8px;
+  }
+  .countdown-card {
+    padding: 10px 14px;
+    min-width: 100px;
+  }
+  .countdown-time {
+    font-size: 1.15rem;
+  }
+  .countdown-label {
+    font-size: 0.68rem;
+  }
+  .countdown-divider {
+    display: none;
+  }
+
+  /* Nav */
+  .nav-inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    gap: 6px;
+  }
+  .nav-brand {
+    font-size: 0.95rem;
+  }
+  .nav-tabs {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 2px;
+    justify-content: center;
+    padding-bottom: 2px;
+  }
+  .nav-tab {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+  .nav-tab .material-symbols-rounded {
+    font-size: 16px;
+  }
+  .nav-tab span:not(.material-symbols-rounded) {
+    display: none;
+  }
+  .lang-select {
+    font-size: 0.72rem;
+    padding: 4px 6px;
+  }
+
+  .controls-section {
+    padding: 16px 0;
+    top: 76px;
+  }
+  .search-bar {
+    margin-bottom: 10px;
+  }
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .filters select {
+    min-width: unset;
+    width: 100%;
+  }
+  .filter-date-group {
+    width: 100%;
+  }
+  .filter-date-group input[type="date"] {
+    width: 100%;
+  }
+  .checkbox-filter {
+    justify-content: flex-start;
+  }
+  #addMosqueBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mosques-section {
+    padding: 20px 0 40px;
+  }
+  .mosque-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .pagination {
+    margin-top: 20px;
+    gap: 4px;
+  }
+  .page-btn {
+    min-width: 36px;
+    height: 36px;
+    font-size: 0.82rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .modal {
+    padding: 20px;
+    max-height: 95vh;
+  }
+  .modal-header h2 {
+    font-size: 1.1rem;
+  }
+  .map-picker-container {
+    height: 180px;
+  }
+
+  .chatbot-window {
+    right: 8px;
+    left: 8px;
+    bottom: 80px;
+    width: auto;
+    max-height: 60vh;
+  }
+  .chatbot-toggle {
+    width: 50px;
+    height: 50px;
+    bottom: 18px;
+    right: 14px;
+  }
+  .chat-icon {
+    font-size: 1.4rem;
+  }
+
+  /* Quran responsive */
+  .quran-section {
+    padding: 80px 0 40px;
+  }
+  .quran-header h2 {
+    font-size: 1.4rem;
+  }
+  .quran-layout {
+    grid-template-columns: 1fr;
+  }
+  .quran-sidebar {
+    max-height: 300px;
+    position: static;
+  }
+  .quran-content {
+    max-height: none;
+    padding: 16px;
+  }
+  .ayah-text-arabic {
+    font-size: 1.3rem;
+    line-height: 2;
+  }
+  .bismillah {
+    font-size: 1.5rem;
+  }
+  .surah-arabic-title {
+    font-size: 1.5rem;
+  }
+  .quran-search-bar {
+    flex-wrap: wrap;
+  }
+  .quran-filters {
+    flex-direction: column;
+  }
+  .quran-filters select {
+    min-width: unset;
+    width: 100%;
+  }
+
+  /* Calendar responsive */
+  .calendar-section {
+    padding: 80px 0 40px;
+  }
+  .calendar-header h2 {
+    font-size: 1.4rem;
+  }
+  .calendar-controls {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 14px;
+  }
+  .calendar-table {
+    font-size: 0.72rem;
+  }
+  .calendar-table thead th {
+    padding: 8px 4px;
+    font-size: 0.62rem;
+  }
+  .calendar-table tbody td {
+    padding: 6px 3px;
+  }
+
+  /* Nearby responsive */
+  .nearby-section {
+    padding: 80px 0 40px;
+  }
+  .nearby-header h2 {
+    font-size: 1.4rem;
+  }
+  .nearby-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nearby-count {
+    margin-left: 0;
+  }
+  .nearby-map-wrapper #nearbyMap {
+    height: 350px !important;
+  }
+  .nearby-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    padding: 20px 16px;
+  }
+  .footer p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    padding: 0 12px;
+  }
+  .hero {
+    padding: 80px 12px 20px !important;
+  }
+  .hero-title {
+    font-size: 1.4rem;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .hero-title .material-symbols-rounded {
+    font-size: 1.4rem;
+  }
+  .hero-subtitle {
+    font-size: 0.82rem;
+    margin-bottom: 12px;
+  }
+  .countdown-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+  .countdown-card {
+    width: 100%;
+    min-width: unset;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .countdown-label {
+    margin-bottom: 0;
+  }
+  .countdown-time {
+    font-size: 1.1rem;
+  }
+
+  .mosque-card {
+    padding: 16px;
+  }
+  .mosque-name {
+    font-size: 1rem;
+  }
+  .mosque-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .mosque-actions .btn,
+  .mosque-actions a.btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .card-badges {
+    gap: 6px;
+  }
+  .type-badge,
+  .biryani-badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+  }
+
+  .comment-form {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .comment-form input {
+    width: 100%;
+  }
+  .comment-form .btn {
+    width: 100%;
+  }
+
+  .chat-input-area {
+    padding: 8px 10px;
+    gap: 4px;
+  }
+  .chat-input-area input {
+    padding: 8px 10px;
+    font-size: 0.82rem;
+  }
+  .btn-voice {
+    width: 32px;
+    height: 32px;
+  }
+  .btn-voice .material-symbols-rounded {
+    font-size: 16px;
+  }
+  .chat-bubble {
+    font-size: 0.85rem;
+    padding: 10px 14px;
+  }
+
+  .btn-full {
+    padding: 12px;
+    font-size: 0.92rem;
+  }
+  .btn {
+    padding: 8px 14px;
+    font-size: 0.82rem;
+  }
+
+  /* Quran small */
+  .surah-content-title {
+    font-size: 1.2rem;
+  }
+  .surah-arabic-title {
+    font-size: 1.3rem;
+  }
+  .ayah-text-arabic {
+    font-size: 1.15rem;
+    line-height: 1.9;
+  }
+  .ayah-block {
+    padding: 12px;
+  }
+  .bismillah {
+    font-size: 1.3rem;
+  }
+  .quran-content {
+    padding: 12px;
+  }
+
+  /* Nearby small */
+  .nearby-map-wrapper #nearbyMap {
+    height: 280px !important;
+  }
+  .radius-btn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.2rem;
+  }
+  .hero-subtitle {
+    font-size: 0.76rem;
+  }
+  .countdown-time {
+    font-size: 1rem;
+  }
+  .filters select {
+    padding: 8px 12px;
+    font-size: 0.82rem;
+  }
+  .search-bar input {
+    font-size: 0.85rem;
+  }
+  .nav-tab {
+    padding: 5px 8px;
+    font-size: 0.72rem;
+  }
+  .calendar-table {
+    font-size: 0.65rem;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1400px;
+  }
+  .mosque-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .quran-layout {
+    grid-template-columns: 340px 1fr;
+  }
+  .nearby-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
